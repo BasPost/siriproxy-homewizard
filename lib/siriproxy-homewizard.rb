@@ -91,16 +91,20 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   def kaku_scene(scene)
     begin
-      if action == "on" then
-         command = "on"
-         say "Ok, I turned on the " + scene + " scene" 
-      elsif action == "off" then
-         command = "off"
-         say "The scene " + scene + " is turned off"
-      else
-         say "Sorry I didn't get that, on or off?"
-      end
+      case command
+        when "on"
+          command = "on"
+          say "Ok, I turned on the " + scene + " scene" 
+        when "off"
+          command = "off"
+          say "The scene " + scene + " is turned off"
+        else
+          say "Sorry I didn't get that, on or off?"
+        end
       open(@url + 'gp/' + @scenes[scene] + '/' + command)
+      request_completed
+    rescue Exception => e
+      say e.to_s, spoken: "Uh oh! Something bad happened..."
       request_completed
     end
   end
@@ -111,7 +115,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
          command = dimlevel
          say "I will dim the " + switch + " to" + dimlevel
       elsif action == "set" then
-         command = dimlebvel
+         command = dimlevel
          say "I will set the " + switch + " to" + dimlevel
       else
         say "Sorry I didn't get that, on or off?"
