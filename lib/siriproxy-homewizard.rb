@@ -5,7 +5,7 @@ require 'open-uri'
 
 ########################################################
 # HomeWizard Voice Control plugin for Siri Proxy
-# Version: 0.0.5
+# Version: 0.0.6
 # By: BasPost
 #
 # Remember to add this plugin to the "config.yml" file!
@@ -17,17 +17,17 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
     
     # ID's van HomeWizard via "get-sensors" command
     # Switches:
-    # ID  0 = "wk lamp kast"
-    # ID  1 = "wk sfeerlampen"
+    # ID  0 = "wk lamp kast"      dim: nee
+    # ID  1 = "wk sfeerlampen"    dim: ja
     # ID  2 = 
-    # ID  3 = "kantoor lamp"
-    # ID  4 = "keuken spots"
-    # ID  5 = "gang lamp"
-    # ID  6 = "kantoor spots"
-    # ID  7 = "overloop"
-    # ID  8 = "keuken achter"
-    # ID  9 = "wk spots links"
-    # ID 10 = "wk spots achter"
+    # ID  3 = "kantoor lamp"      dim: ja
+    # ID  4 = "keuken spots"      dim: ja
+    # ID  5 = "gang lamp"         dim: nee
+    # ID  6 = "kantoor spots"     dim: ja
+    # ID  7 = "overloop"          dim: nee
+    # ID  8 = "keuken achter"     dim: ja
+    # ID  9 = "wk spots links"    dim: ja
+    # ID 10 = "wk spots achter"   dim: ja
     # 
     # Scenes:
     # ID  0 = "sfeerlicht auto"
@@ -68,6 +68,11 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
     kaku_scene(scene)
   end
 
+  # Dim a device scenario A
+  listen_for /(dim|set).*(living lights|office desk|kitchen lights|office lights|backdoor|living left|living right).*([0-9,].*[0-9])/i do |action, switch, dimlevel|
+    kaku_switch_dim(action,switch,dimlevel)
+  end
+
   def kaku_switch(action, switch)
     begin
       if action == "on"
@@ -96,6 +101,22 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
          say "Sorry I didn't get that, on or off?"
       end
       open(@url + 'gp/' + @scenes[scene] + '/' + command)
+      request_completed
+    end
+  end
+
+  def kaku_switch_dim(action, switch, dimlevel)
+    begin
+      if action == "dim"
+         command = dimlevel
+         say "I will dim the " + switch + " to" + dimlevel
+      elsif action == "set"
+         command = dimlebvel
+         say "I will set the " + switch + " to" + dimlevel
+      else
+        say "Sorry I didn't get that, on or off?"
+      end
+      open(@url + 'sw/dim/' + @switches[switch] + '/' + dimlevel)
       request_completed
     end
   end
