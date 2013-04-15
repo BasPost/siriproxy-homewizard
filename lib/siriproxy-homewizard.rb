@@ -75,10 +75,10 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   def kaku_switch(action, switch)
     begin
-      if action == "on"
+      if action == "on" then
          command = "on"
          say "Ok, I turned on the " + switch + " light" 
-      elsif action == "off"
+      elsif action == "off" then
          command = "off"
          say "The " + switch + " is turned off"
       else
@@ -91,10 +91,10 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   def kaku_scene(scene)
     begin
-      if action == "on"
+      if action == "on" then
          command = "on"
          say "Ok, I turned on the " + scene + " scene" 
-      elsif action == "off"
+      elsif action == "off" then
          command = "off"
          say "The scene " + scene + " is turned off"
       else
@@ -107,10 +107,10 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   def kaku_switch_dim(action, switch, dimlevel)
     begin
-      if action == "dim"
+      if action == "dim" then
          command = dimlevel
          say "I will dim the " + switch + " to" + dimlevel
-      elsif action == "set"
+      elsif action == "set" then
          command = dimlebvel
          say "I will set the " + switch + " to" + dimlevel
       else
