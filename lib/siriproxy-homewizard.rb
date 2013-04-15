@@ -111,7 +111,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
          command = dimlevel
          say "I will dim the " + switch + " to" + dimlevel
       elsif action == "set" then
-         command = dimlebvel
+         command = dimlevel
          say "I will set the " + switch + " to" + dimlevel
       else
         say "Sorry I didn't get that, on or off?"
