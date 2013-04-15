@@ -7,7 +7,7 @@ Gem::Specification.new do |s|
   s.authors     = ["BasPost"]
   s.email       = [""]
   s.homepage    = ""
-  s.summary     = %q{An HomeWizard Siri Proxy Plugin}
+  s.summary     = %q{HomeWizard Siri Proxy Plugin}
   s.description = %q{ }
 
   s.rubyforge_project = "siriproxy-homewizard"
