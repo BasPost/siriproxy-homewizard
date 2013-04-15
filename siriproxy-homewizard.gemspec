@@ -10,7 +10,7 @@ Gem::Specification.new do |s|
   s.summary     = %q{An HomeWizard Siri Proxy Plugin}
   s.description = %q{ }
 
-  s.rubyforge_project = "siriproxy-homewizrd"
+  s.rubyforge_project = "siriproxy-homewizard"
 
   s.files         = `git ls-files 2> /dev/null`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/* 2> /dev/null`.split("\n")
