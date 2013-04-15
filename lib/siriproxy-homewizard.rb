@@ -61,10 +61,12 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
   # Turn on/off a scene scenario A
   listen_for /(on|off).*(alarm|living room)/i do |action, scene|
     kaku_scene(scene)
+  end
 
   # Turn on/off a scene scenario B
   listen_for /(alarm|living room).*(on|off)/i do |scene, action|
     kaku_scene(scene)
+  end
 
   def kaku_switch(action, switch)
     begin
