@@ -36,6 +36,10 @@ Turn on/off kaku scenes by saying:
 * Siri, turn 'on' the 'alarm' lights
 * 'living room' 'off'
 
+Dim a device by saying:
+* Dim the living lights to 50%
+* Set the desktop lamp at 50
+
 Note:
 The plugin uses keywords which are marked with '' So it doesn't mather in what order you say it.
 The keywords are the names you used in the HomeWizard and filled in the file (`~/lib/siriproxy-homewizard`)
@@ -45,5 +49,6 @@ and matches it's ID
 Licensing
 ---------
 * 0.0.5 - Initial Release
+* 0.0.6 - added "dim" command, first test
 
 Copyright (c) 2013, Bas Post
