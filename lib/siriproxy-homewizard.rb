@@ -49,12 +49,12 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
   end
 
   # Turn on/off a device scenario A
-  listen_for /(on|off).*(living lamp|living lights|office desklamp|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right)/i do |action, switch|
+  listen_for /(on|off).*(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right)/i do |action, switch|
     kaku_switch(action,switch)
   end
 
   # Turn on/off a device scenario B
-  listen_for /(living lamp|living lights|office desklamp|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right).*(on|off)/i do |switch, action|
+  listen_for /(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right).*(on|off)/i do |switch, action|
     kaku_switch(action,switch)
   end
 
