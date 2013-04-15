@@ -50,27 +50,27 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   # Turn on/off a device scenario A
   listen_for /(on|off).*(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right)/i do |action, switch|
-    kaku_switch(action,switch)
+    kaku_switch(action, switch)
   end
 
   # Turn on/off a device scenario B
   listen_for /(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right).*(on|off)/i do |switch, action|
-    kaku_switch(action,switch)
+    kaku_switch(action, switch)
   end
 
   # Turn on/off a scene scenario A
   listen_for /(on|off).*(alarm|living room)/i do |action, scene|
-    kaku_scene(scene)
+    kaku_scene(action, scene)
   end
 
   # Turn on/off a scene scenario B
   listen_for /(alarm|living room).*(on|off)/i do |scene, action|
-    kaku_scene(scene)
+    kaku_scene(action, scene)
   end
 
   # Dim a device scenario A
   listen_for /(dim|set).*(living lights|office desk|kitchen lights|office lights|backdoor|living left|living right).*([0-9,].*[0-9])/i do |action, switch, dimlevel|
-    kaku_switch_dim(action,switch,dimlevel)
+    kaku_switch_dim(action, switch, dimlevel)
   end
 
   def kaku_switch(action, switch)
@@ -89,7 +89,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
     end
   end
 
-  def kaku_scene(scene)
+  def kaku_scene(action, scene)
     begin
       if action == "on" then
          command = "on"
