@@ -46,7 +46,7 @@ and matches it's ID
 
 
 Version History
----------
+---------------
 * 0.0.5 - Initial Release
 * 0.0.6 - added "dim" command, first test
 * 0.0.8 - New cleaner code
@@ -55,6 +55,9 @@ Version History
 Future
 ------
 * use JSON to automatic get sensor-id's and status of sensors
-* If you use HomeWizard compatible Cresta Weather Station sensors , ask siri for the current values
-  example: "Siri, what is the current outside temperature?" or "What is the current windspeed?"
+* If you use HomeWizard compatible Cresta Weather Station sensors, ask siri for the current values,
+  for example:
+  "Siri, what is the current outside temperature?"
+  "What is the current windspeed?"
+
 Copyright (c) 2013, Bas Post
