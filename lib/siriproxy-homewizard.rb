@@ -70,7 +70,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
 
   # Dim a device scenario A
   listen_for /(dim|set).*(living lights|office desk|kitchen lights|office lights|backdoor|living left|living right).*([0-9,].*[0-9])/i do |action, switch, dimlevel|
-    kaku_dim(action, dimlevel)
+    kaku_dim(action, switch, dimlevel)
   end
 
   def kaku_switch(action, switch)
@@ -105,7 +105,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
     end
   end
 
-  def kaku_dim(action, dimlevel)
+  def kaku_dim(action, switch, dimlevel)
     begin
       if action == "dim" then
          command = dimlevel
