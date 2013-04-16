@@ -45,10 +45,16 @@ The keywords are the names you used in the HomeWizard and used in the file (`~/l
 and matches it's ID
 
 
-Licensing
+Version History
 ---------
 * 0.0.5 - Initial Release
 * 0.0.6 - added "dim" command, first test
 * 0.0.8 - New cleaner code
 
+
+Future
+------
+* use JSON to automatic get sensor-id's and status of sensors
+* If you use HomeWizard compatible Cresta Weather Station sensors , ask siri for the current values
+  example: "Siri, what is the current outside temperature?" or "What is the current windspeed?"
 Copyright (c) 2013, Bas Post
