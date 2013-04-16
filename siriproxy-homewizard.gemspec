@@ -3,12 +3,16 @@ $:.push File.expand_path("../lib", __FILE__)
 
 Gem::Specification.new do |s|
   s.name        = "siriproxy-homewizard"
-  s.version     = "0.0.6" 
+  s.version     = "0.0.8" 
   s.authors     = ["BasPost"]
   s.email       = [""]
   s.homepage    = ""
   s.summary     = %q{HomeWizard Siri Proxy Plugin}
+<<<<<<< HEAD:siriproxy-homewizard.gemspec
   s.description = %q{a simple plugin for SiriProxy to voice command a HomeWizard system}
+=======
+  s.description = %q{a simple plugin for SiriProxy to voice command a HomeWizard system.}
+>>>>>>> new code:siriproxy-homewizard.gemspec
 
   s.rubyforge_project = "siriproxy-homewizard"
 

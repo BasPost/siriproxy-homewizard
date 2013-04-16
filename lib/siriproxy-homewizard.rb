@@ -5,7 +5,7 @@ require 'open-uri'
 
 ########################################################
 # HomeWizard Voice Control plugin for Siri Proxy
-# Version: 0.0.6
+# Version: 0.0.8
 # By: BasPost
 #
 # Remember to add this plugin to the "config.yml" file!
@@ -39,6 +39,8 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
      
     @switches =  {'living lamp' => '0','living lights' => '1','office desk' => '3','kitchen lights' => '4','hal' => '5','office lights' => '6', 'upstairs' => '7', 'backdoor' => '8', 'living left' => '9', 'living right' => '10'}
     @scenes = {'living room' => '5'}
+        
+    @responses = [ "One moment.", "Your wish is my command.", "Just a second.", "OK.", "No problem.", "Hold on a second.", "Fine with me.", "Give me a second." ]
       
   end
 
@@ -49,6 +51,7 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
   end
 
   # Turn on/off a device scenario A
+<<<<<<< HEAD
   listen_for /(on|off).*(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right)/i do |action, switch|
     kaku_switch(action, switch)
   end
@@ -101,10 +104,62 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
          say "Sorry I didn't get that, on or off?"
       end
       open(@url + 'gp/' + @scenes[scene] + '/' + command)
+=======
+  listen_for /(on|off).*(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right)/i do |cmd, src|
+    kaku_switch(src,cmd)
+  end
+
+  # Turn on/off a device scenario B
+  listen_for /(living lamp|living lights|office desk|kitchen lights|hal|office lights|upstairs|backdoor|living left|living right).*(on|off)/i do |src, cmd|
+    kaku_switch(src,cmd)
+  end
+
+  # Dim a device scenario A
+  listen_for /(dim).*(living lights|office desk|kitchen lights|office lights|backdoor|living left|living right).*([0-9,].*[0-9])/i do |cmd, src, lvl|
+    kaku_switch(src,lvl)
+  end
+
+  # Dim a device scenario B
+  listen_for /(living lights|office desk|kitchen lights|office lights|backdoor|living left|living right).*([0-9,].*[0-9])/i do |src, lvl|
+    kaku_switch(src,lvl)
+  end
+
+  # Turn on/off a scene scenario A
+  listen_for /(on|off).*(alarm|living room)/i do |cmd, src|
+    kaku_scene(src,cmd)
+  end
+
+  # Turn on/off a scene scenario B
+  listen_for /(alarm|living room).*(on|off)/i do |src, cmd|
+    kaku_scene(src,cmd)
+  end
+
+  def kaku_switch(switch, command)
+    begin
+      case command
+        when "on"
+          signal = "on"
+          path = 'sw/'
+          say "Turning on your " + switch + " light.", spoken: @responses[rand(@responses.size)]
+        when "off"
+          signal = "off"
+          path = "sw/"
+          say "Turning off your " + switch + " light.", spoken: @responses[rand(@responses.size)]
+        else
+          signal = command
+          path = "sw/dim/"
+          say "Dimming your " + switch + " light to " + command + "%", spoken: @responses[rand(@responses.size)]
+        end
+      open(@url + path + @switches[switch] + '/' + signal)
+      request_completed
+    rescue Exception => e
+      say e.to_s, spoken: "Uh oh! Something bad happened..."
+>>>>>>> new code
       request_completed
     end
   end
 
+<<<<<<< HEAD
   def kaku_dim(action, switch, dimlevel)
     begin
       if action == "dim" then
@@ -117,6 +172,24 @@ class SiriProxy::Plugin::HomeWizard < SiriProxy::Plugin
         say "Sorry I didn't get that, could you repeat?"
       end
       open(@url + 'sw/dim/' + @switches[switch] + '/' + dimlevel)
+=======
+  def kaku_scene(scene, command)
+    begin
+      case command
+        when "on"
+          signal = "on"
+          say "Turning on your " + scene + " scene.", spoken: @responses[rand(@responses.size)]
+        when "off"
+          signal = "off"
+          say "Turning off your " + scene + " scene.", spoken: @responses[rand(@responses.size)]
+        else
+          say "Sorry I didn't get that, could you repeat that?"
+        end
+      open(@url + 'gp/' + @scenes[scene] + '/' + signal)
+      request_completed
+    rescue Exception => e
+      say e.to_s, spoken: "Uh oh! Something bad happened..."
+>>>>>>> new code
       request_completed
     end
   end
