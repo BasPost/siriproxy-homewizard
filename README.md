@@ -60,4 +60,10 @@ Future
   "Siri, what is the current outside temperature?"
   "What is the current windspeed?"
 
+
+UPDATE
+------
+
+I stopped developing and supporting this plugin due to IOS 7. See github page of SiriProxy
+
 Copyright (c) 2013, Bas Post
